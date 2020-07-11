@@ -1,4 +1,4 @@
-gst-launch-1.0  filesrc location=/vol1/out.mp4 \
+gst-launch-1.0  filesrc location=/vol1/teste_dataloss/out.mp4 \
     ! tee name=t \
     ! queue \
     ! decodebin \
