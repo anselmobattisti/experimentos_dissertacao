@@ -1,0 +1,33 @@
+reset
+fontSpec(s) = sprintf("Arial, %d", s)
+fontSpecBold(s) = sprintf("Arial, %d", s)
+set terminal pngcairo nocrop enhanced font fontSpec(14)
+
+set key box top left spacing 1
+
+set ylabel "Total of Data Transferred (Megabit)" font fontSpecBold(18)
+set xlabel "Number of IoMT APP" font fontSpecBold(18)
+
+set ytics format "{/:Bold {/=14 %h}}"
+set xtics font "Arial Bold, 14" 
+
+# Replace small stripes on the Y-axis with a horizontal gridlines
+set tic scale 1
+set grid ytics lc rgb "#000000"
+
+# Remove border around chart
+# unset border
+
+# Manual set the Y-axis range
+set yrange [0 to 400]
+
+set style data histogram
+set style histogram cluster gap 1 errorbars
+
+set style fill solid border rgb "black"
+set auto x
+set datafile separator ","
+set output "ex1_link.png"
+
+plot 'ex1_link_data.dat' using 2:3:xtic(1) lt rgb "#0000ff" title col(2),\
+        '' using 5:6 lt rgb "#ff0000" title col(5)

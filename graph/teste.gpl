@@ -1,0 +1,24 @@
+$DATA <<EOD
+cat1 i1 95.2162 0.5 i2 96.2065 0.710029 i3 98.4846 0.58444 
+cat2 p1 96.899 0.502756 p2 97.9695 1.16202 p3 99.631 0.0911258 
+cat3 n1 99.4709 0.318714 n2 99.5897 0.234542 n3 99.9535 0.0507579
+EOD
+
+set terminal pngcairo enhanced rounded font ",16"
+set output 'fig.png'
+
+set style fill solid 1 border lt -1
+set boxwidth 1.0
+
+set linetype 42 lw 2 lc rgb 'black'
+set yr [0:100]
+
+set xtics out nomirror
+
+plot \
+  $DATA using (0 + $0):3:xtic(2) w boxes lc rgb 'red' t 'cat1', \
+  $DATA using (0 + $0):3:4 w yerrorbars lt 42 t '', \
+  $DATA using (4 + $0):6:xtic(5) w boxes lc rgb 'green' t 'cat2', \
+  $DATA using (4 + $0):6:7 w yerrorbars lt 42 t '', \
+  $DATA using (8 + $0):9:xtic(8) w boxes lc rgb 'blue' t 'cat3', \
+  $DATA using (8 + $0):9:10 w yerrorbars lt 42 t ''
