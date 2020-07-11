@@ -36,7 +36,9 @@ d2 = net.addDocker(
     dcmd="python /root/video_qrcode_detection/v2.py",
     port_bindings={'5000/udp':11002},
     ports=[(5000, 'udp')],
-    publish_all_ports=True)
+    publish_all_ports=True,
+    cpuset_cpus="1"
+    )
 
 d3 = net.addDocker(
     'd3', 
@@ -45,7 +47,9 @@ d3 = net.addDocker(
     dcmd="python /root/video_qrcode_detection/v2.py",
     port_bindings={'5000/udp':11003},
     ports=[(5000, 'udp')],
-    publish_all_ports=True)
+    publish_all_ports=True,
+    cpuset_cpus="2"
+    )
 
 d4 = net.addDocker(
     'd4', 
@@ -54,7 +58,9 @@ d4 = net.addDocker(
     dcmd="python /root/video_qrcode_detection/v2.py",
     port_bindings={'5000/udp':11004},
     ports=[(5000, 'udp')],
-    publish_all_ports=True)
+    publish_all_ports=True,
+    cpuset_cpus="4"
+    )
 
 info('*** Adding switches\n')
 s1 = net.addSwitch('s1', cls=OVSKernelSwitch)
@@ -79,7 +85,20 @@ net.start()
 print(time.time())
 
 # colocar aqui um loop e coletar os dados de log dos containers para fazer vários testes
-d1.cmd("/vol1/teste_dataloss/send_video.sh")
+# d1.cmd("/vol1/latencia/send_video.sh")
+
+# remove link and create other
+net.delLinkBetween(d2,s1)
+net.addLink(d2, s1, cls=TCLink, bw=100,       delay='500ms')
+d1.cmd("/vol1/latencia/send_video.sh")
+
+net.delLinkBetween(d2,s1)
+net.addLink(d2, s1, cls=TCLink, bw=100,       delay='1000ms')
+
+d2.cmd("killall python")
+d2.cmd("python /root/video_qrcode_detection/v2.py")
+d1.cmd("/vol1/latencia/send_video.sh")
+
 
 info('*** Running CLI\n')
 CLI(net)
