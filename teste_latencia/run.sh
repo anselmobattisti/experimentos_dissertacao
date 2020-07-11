@@ -1,1 +1,1 @@
-sudo python3 teste.py
+sudo python3 teste.py $1

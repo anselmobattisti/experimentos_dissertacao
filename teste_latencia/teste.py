@@ -9,9 +9,9 @@ from mininet.link import TCLink
 from mininet.log import info, setLogLevel
 from mininet.node import OVSKernelSwitch, UserSwitch
 import time
-import os.path
+import sys
 
-homedir = os.path.expanduser("~")
+homedir = sys.argv[1]
 
 setLogLevel('info')
 
@@ -21,7 +21,7 @@ info('*** Adding controller\n')
 net.addController('c0')
 
 info('*** Adding docker containers\n')
-d1 = net.addDocker('d1', ip='10.0.0.251', volumes=[homedir+"/versionado/experimentos_dissertacao/:/vol1"], dimage="ubuntu_gstreamer", dcmd="/bin/bash")
+d1 = net.addDocker('d1', ip='10.0.0.251', volumes=["/home/"+homedir+"/versionado/experimentos_dissertacao/:/vol1"], dimage="ubuntu_gstreamer", dcmd="/bin/bash")
 
 # d2 = net.addDocker('d2', ip='10.0.0.252', volumes=["/home/battisti/versionado/alfa/docs/teste:/vol1"], dimage="ubuntu_gstreamer", dcmd="/bin/bash")
 
