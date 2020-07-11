@@ -36,8 +36,7 @@ d2 = net.addDocker(
     dcmd="python /root/video_qrcode_detection/v2.py",
     port_bindings={'5000/udp':11002},
     ports=[(5000, 'udp')],
-    publish_all_ports=True,
-    cpuset_cpus="2")
+    publish_all_ports=True)
 
 d3 = net.addDocker(
     'd3', 
@@ -46,8 +45,7 @@ d3 = net.addDocker(
     dcmd="python /root/video_qrcode_detection/v2.py",
     port_bindings={'5000/udp':11003},
     ports=[(5000, 'udp')],
-    publish_all_ports=True,
-    cpuset_cpus="2")
+    publish_all_ports=True)
 
 d4 = net.addDocker(
     'd4', 
@@ -56,8 +54,7 @@ d4 = net.addDocker(
     dcmd="python /root/video_qrcode_detection/v2.py",
     port_bindings={'5000/udp':11004},
     ports=[(5000, 'udp')],
-    publish_all_ports=True,
-    cpuset_cpus="2")
+    publish_all_ports=True)
 
 info('*** Adding switches\n')
 s1 = net.addSwitch('s1', cls=OVSKernelSwitch)
