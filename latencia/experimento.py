@@ -35,29 +35,26 @@ d1 = net.addDocker(
     dimage="alfa/vms/video_qrcode_detection", 
     dcmd="python /root/video_qrcode_detection/v2.py",
     ports=[(5000, 'udp')],
-    publish_all_ports=True,
-    cpuset_cpus="1"
+    publish_all_ports=True
     )
 
-d2 = net.addDocker(
-    'd2', 
-    ip='10.0.0.252',
-    dimage="alfa/vms/video_qrcode_detection", 
-    dcmd="python /root/video_qrcode_detection/v2.py",
-    ports=[(5000, 'udp')],
-    publish_all_ports=True,
-    cpuset_cpus="1"
-    )
+# d2 = net.addDocker(
+#     'd2', 
+#     ip='10.0.0.252',
+#     dimage="alfa/vms/video_qrcode_detection", 
+#     dcmd="python /root/video_qrcode_detection/v2.py",
+#     ports=[(5000, 'udp')],
+#     publish_all_ports=True
+#     )
 
-d3 = net.addDocker(
-    'd3', 
-    ip='10.0.0.253',
-    dimage="alfa/vms/video_qrcode_detection", 
-    dcmd="python /root/video_qrcode_detection/v2.py",
-    ports=[(5000, 'udp')],
-    publish_all_ports=True,
-    cpuset_cpus="1"
-    )
+# d3 = net.addDocker(
+#     'd3', 
+#     ip='10.0.0.253',
+#     dimage="alfa/vms/video_qrcode_detection", 
+#     dcmd="python /root/video_qrcode_detection/v2.py",
+#     ports=[(5000, 'udp')],
+#     publish_all_ports=True
+#     )
 
 # d4 = net.addDocker(
 #     'd4', 
@@ -86,10 +83,11 @@ info('*** Creating links\n')
 # net.addLink(s1, s2, cls=TCLink, bw=1, delay='0ms', loss=5)
 # net.addLink(s1, s2, cls=TCLink, bw=1, delay='0ms')
 
-net.addLink(d0, s1, cls=TCLink, bw=100,       delay='0ms')
-net.addLink(d1, s1, cls=TCLink, bw=100,       delay='50ms')
-net.addLink(d2, s1, cls=TCLink, bw=100,       delay='100ms')
-net.addLink(d3, s1, cls=TCLink, bw=100,       delay='150ms')
+net.addLink(d0, d1, cls=TCLink, bw=100,       delay='25ms')
+
+# net.addLink(d1, s1, cls=TCLink, bw=100,       delay='50ms')
+# net.addLink(d2, s1, cls=TCLink, bw=100,       delay='100ms')
+# net.addLink(d3, s1, cls=TCLink, bw=100,       delay='150ms')
 
 info('*** Starting network\n')
 net.start()
@@ -97,18 +95,13 @@ net.start()
 # info('*** Testing connectivity\n')
 net.pingAll()
 
-time.sleep(1)
+time.sleep(10)
 
 print(time.time())
 
-print("\n")
-
-# colocar aqui um loop e coletar os dados de log dos containers para fazer vários testes
-# d1.cmd("/vol1/latencia/send_video.sh")
-
-# remove link and create other
 info('*** Executing test\n')
-d0.cmd("/vol1/latencia/send_video.sh")
+d0.cmd("/vol1/latencia/send_video.sh 10.0.0.251")
+info('*** End test\n')
 
 print("\n")
 info('*** Running CLI\n')

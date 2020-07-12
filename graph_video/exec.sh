@@ -1,0 +1,1 @@
+gnuplot ex1_lat.gpl

@@ -1,0 +1,32 @@
+reset
+fontSpec(s) = sprintf("Arial, %d", s)
+fontSpecBold(s) = sprintf("Arial, %d", s)
+set terminal pngcairo nocrop enhanced font fontSpec(14)
+
+set key box top left spacing 1
+
+set ylabel "First QR Code Detected (s)" font fontSpecBold(18)
+set xlabel "Latency From Device to VMS (ms)" font fontSpecBold(18)
+
+set ytics format "{/:Bold {/=14 %h}}"
+set xtics font "Arial Bold, 14" 
+
+# Replace small stripes on the Y-axis with a horizontal gridlines
+set tic scale 1
+set grid ytics lc rgb "#000000"
+
+# Remove border around chart
+# unset border
+
+# Manual set the Y-axis range
+set yrange [0 to 1]
+
+set style data histogram
+set style histogram cluster gap 1 errorbars
+
+set style fill solid border rgb "black"
+set auto x
+set datafile separator ","
+set output "ex1_lat.png"
+
+plot 'ex1_lat.dat' using 2:3:xtic(1) lt rgb "#0000ff" title col(2)
