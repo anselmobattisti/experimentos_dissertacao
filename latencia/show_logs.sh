@@ -1,14 +1,14 @@
 echo ""
 echo "----------"
-echo "Container D2 - Edge"
+echo "Container D1 "
+docker container logs mn.d1
+
+echo ""
+echo "----------"
+echo "Container D2 "
 docker container logs mn.d2
 
 echo ""
 echo "----------"
-echo "Container D3 - Cloud A"
+echo "Container D3 "
 docker container logs mn.d3
-
-echo ""
-echo "----------"
-echo "Container D4 - Cloud B"
-docker container logs mn.d4

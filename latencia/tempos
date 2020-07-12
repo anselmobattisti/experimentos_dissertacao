@@ -1,0 +1,31 @@
+Result
+
+Primeira rodada
+net.addLink(d0, s1, cls=TCLink, bw=100,       delay='0ms')
+net.addLink(d1, s1, cls=TCLink, bw=100,       delay='50ms')
+net.addLink(d2, s1, cls=TCLink, bw=100,       delay='100ms')
+net.addLink(d3, s1, cls=TCLink, bw=100,       delay='150ms')
+net.addLink(d4, s1, cls=TCLink, bw=100,       delay='200ms')
+net.addLink(d5, s1, cls=TCLink, bw=100,       delay='250ms')
+
+a - 1594500696.147684
+b - 1594501134.3582737
+c - 1594501291.638637
+d - 1594501376.194533
+e - 1594501558.740212
+f - 1594501635.8626502
+g - 1594501711.0624294
+h - 1594501783.0501914
+i - 1594501871.9000678
+j - 1594501970.3666008
+
+2_1 - 
+2_2 - 
+2_3 - 
+2_4 - 
+2_5 - 
+2_6 - 
+2_7 - 
+2_8 - 
+2_9 - 
+2_10 - 
