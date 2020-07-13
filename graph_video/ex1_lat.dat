@@ -1,4 +1,4 @@
-Latency, Detection Time, TTL_MAX, TTL_MIN
+Latency, Event Detection, TTL_MAX, TTL_MIN
 10, 0.4846, 0.0242,0.0242
 15, 0.4962, 0.0248,0.0248
 20, 0.5183, 0.0259,0.0259
