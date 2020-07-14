@@ -5,7 +5,7 @@ set terminal pngcairo nocrop enhanced font fontSpec(14)
 
 set key box top left spacing 1
 
-set ylabel "First QR Code Detected (s)" font fontSpecBold(18)
+set ylabel "First Frame Detection - FFD (s)" font fontSpecBold(18)
 set xlabel "Latency From Device to VMS (ms)" font fontSpecBold(18)
 
 set ytics format "{/:Bold {/=14 %h}}"
